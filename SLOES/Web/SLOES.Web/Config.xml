@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+	说明：该文件为森岚云考试云端配置文件，非系统维护人员请勿修改该文件内容。
+-->
+<Config>
+
+  <Basic>
+
+    <!-- 数据库连接字符串 -->
+    <DBConnection>Server=localhost;Port=3306;Database=sloes;Uid=root;Pwd=abc123__</DBConnection>
+
+    <!-- 日志文件保存天数 -->
+    <MaxLogFileCount>30</MaxLogFileCount>
+
+  </Basic>
+
+  <AppVersion>
+
+    <!-- PC客户端最新版本、下载链接及更新日志 -->
+    <PC>
+      <Version></Version>
+      <DownloadUrl></DownloadUrl>
+      <ChangeLog></ChangeLog>
+    </PC>
+
+    <!-- Android客户端最新版本、下载链接及更新日志 -->
+    <Android>
+      <Version></Version>
+      <DownloadUrl></DownloadUrl>
+      <ChangeLog></ChangeLog>
+    </Android>
+
+    <!-- IOS客户端最新版本、下载链接及更新日志 -->
+    <IOS>
+      <Version></Version>
+      <DownloadUrl></DownloadUrl>
+      <ChangeLog></ChangeLog>
+    </IOS>
+
+  </AppVersion>
+
+</Config>

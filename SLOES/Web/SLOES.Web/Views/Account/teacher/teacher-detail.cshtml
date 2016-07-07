@@ -1,0 +1,52 @@
+﻿@using SLOES.Util
+@using SLOES.Model
+@using SLOES.DTO
+@using SLOES.Service
+
+@{
+    string chineseName = string.Empty;
+    string userName = string.Empty;
+    string levelString = string.Empty;
+    int isCanMarkPaper = 0;
+    string isCanMarkPaperString = string.Empty;
+    string addTime = string.Empty;
+    int teacherID = Convert.ToInt32( ApiQueryUtil.QueryArgByGet("id"));
+
+    ServiceInvokeDTO<Teacher> result = ServiceFactory.Instance.AccountDataService.GetTeacherByID(teacherID);
+    if (result != null && result.Code == SLOES.Core.InvokeCode.SYS_INVOKE_SUCCESS)
+    {
+        Teacher teacher = result.Data;
+        if (teacher != null)
+        {
+            chineseName = teacher.ChineseName == null ? string.Empty : teacher.ChineseName;
+            userName = teacher.UserName == null ? string.Empty : teacher.UserName;
+            levelString = teacher.Level.GetDescription();
+            isCanMarkPaper = teacher.ChineseName == null ? 0 : teacher.IsCanMarkPaper;
+            isCanMarkPaperString = isCanMarkPaper == 0 ? "否" : "是";
+            addTime = teacher.AddTime.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+    }
+}
+
+<div class="modal-header">
+    <a type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"></span></a>
+    <span class="modal-title">详情</span>
+</div>
+<div class="modal-body">
+    <table class="inputs-table" >
+	    <tbody>
+		    <tr><td class="text">姓名：</td><td class="input">@chineseName</td></tr>
+            <tr><td class="text">用户名：</td><td class="input">@userName</td></tr>
+            <tr><td class="text">是否具有阅卷权限：</td><td class="input">@isCanMarkPaperString</td></tr>
+		    <tr><td class="text">账号类型：</td><td class="input">@levelString</td></tr>
+            <tr><td class="text">添加时间：</td><td class="input">@addTime</td></tr>
+	    </tbody>
+    </table>
+</div>
+<div class="modal-footer"></div>
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F326BBD-7B89-4EC4-9E67-6022DE4ABCCD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SLOES.Model</RootNamespace>
+    <AssemblyName>SLOES.Model</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\library\FluentValidation\NET35\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\Json.net\Net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\ItemData\BlankAnswer.cs" />
+    <Compile Include="Model\ItemData\BlankItem.cs" />
+    <Compile Include="Model\ItemData\WordItem.cs" />
+    <Compile Include="Model\RecordData\TeacherDoRecord.cs" />
+    <Compile Include="Model\ItemData\Chapter.cs" />
+    <Compile Include="Model\ItemData\Course.cs" />
+    <Compile Include="Model\RecordData\Feedback.cs" />
+    <Compile Include="Model\ItemData\JudgeItem.cs" />
+    <Compile Include="Model\PaperData\PaperJudge.cs" />
+    <Compile Include="Model\PaperData\PaperMultiple.cs" />
+    <Compile Include="Model\PaperData\PaperSingle.cs" />
+    <Compile Include="Model\RecordData\ClientLoginRecord.cs" />
+    <Compile Include="Model\ItemData\MultipleItem.cs" />
+    <Compile Include="Model\AccountData\StudentError.cs" />
+    <Compile Include="Model\AccountData\StudentFavorite.cs" />
+    <Compile Include="Model\AccountData\StudentScore.cs" />
+    <Compile Include="Model\AccountData\Teacher.cs" />
+    <Compile Include="Model\PaperData\Paper.cs" />
+    <Compile Include="Model\ItemData\SingleItem.cs" />
+    <Compile Include="Model\AccountData\Student.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Type\TeacherLevel.cs" />
+    <Compile Include="Type\ItemType.cs" />
+    <Compile Include="Type\PaperType.cs" />
+    <Compile Include="Type\TerminalType.cs" />
+    <Compile Include="Type\StudentState.cs" />
+    <Compile Include="Validator\ErrorMessage.cs" />
+    <Compile Include="Validator\FeedbackValidator.cs" />
+    <Compile Include="Validator\StudentValidator.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

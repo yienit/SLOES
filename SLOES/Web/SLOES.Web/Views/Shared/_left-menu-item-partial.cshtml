@@ -1,0 +1,18 @@
+﻿@using SLOES.Web
+@using SLOES.Core
+@using SLOES.Model
+@{
+   
+    Course currentCourse = Session[SLOES.Web.Constant.SESSION_KEY_COURSE] as Course;
+}
+
+<div class="ce_navlist_container">
+	<ul>  
+        <li class="ce_navlist"><span><a href="/item/chapterlist" title="" ><i class="fa fa-cog"></i>&nbsp;章节设置</a></span></li>  
+        <li class="ce_navlist"><span><a href="/item/singlelist" title="" ><i class="fa fa-dot-circle-o"></i>&nbsp;单选题</a></span></li>
+        <li class="ce_navlist"><span><a href="/item/multiplelist" title="" ><i class="fa fa-check-square"></i>&nbsp;多选题</a></span></li>
+        <li class="ce_navlist"><span><a href="/item/judgelist" title="" ><i class="fa fa-check"></i>&nbsp;判断题</a></span></li>
+        <li class="ce_navlist"><span><a href="/item/blanklist" title="" ><i class="fa fa-plus-square-o"></i>&nbsp;填空题</a></span></li>
+        <li class="ce_navlist"><span><a href="/item/wordlist" title="" ><i class="fa fa-pencil-square-o"></i>&nbsp;简答题</a></span></li>
+    </ul>
+</div>

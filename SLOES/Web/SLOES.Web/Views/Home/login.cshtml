@@ -1,0 +1,197 @@
+﻿@using SLOES.Web;
+
+@{
+    Layout = null;
+    HttpCookie cookie = Request.Cookies[Constant.COOKIE_NAME];
+    string userName = cookie == null ? string.Empty : cookie[Constant.COOKIE_KEY_USER_NAME];
+    string message = ViewData[Constant.LOG_TIP_VIEW_AND_TEMP_KEY] == null ? string.Empty : ViewData[Constant.LOG_TIP_VIEW_AND_TEMP_KEY].ToString();
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>森岚云考试</title>
+    <meta name="keywords" content="森岚云考试" />
+    <link rel="stylesheet" href="@Url.Content("~/static/css/animate.min.css")" />
+	<link rel="stylesheet" href="@Url.Content("~/static/css/font-awesome/css/font-awesome.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/static/css/index.css") " />
+</head>
+<body>
+	
+<!-- header -->
+<div class="page_header p-t-10 p-b-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-2">
+                <a href="/home/login"><img src="@Url.Content("~/static/images/index/logo.png")" alt="" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /header -->
+		
+<!-- login & reg -->
+<div class="login_area">
+    <div class="container p-y-lg">
+        <div class="col-xs-4 col-xs-offset-8" style="padding-top:70px;">
+				
+			<!-- login -->
+            <div class="card bg-white login active">
+                <div class="card-header clearfix">
+                    <h3 class="l m-0 n fz-18 h30">登录</h3>
+                </div>
+                <div class="card-block">
+                    <form id="login_form" action="/Home/LoginEx" method="POST">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                                <input type="text" id="login_user_name" name="user_name" value="@userName" maxlength="50" class="form-control" placeholder="用户名"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="password" id="login_pwd" name="pwd" maxlength="50" class="form-control" placeholder="密码" />
+								<input type="hidden" id="login_pwd_hidden" name="pwd_hidden" value="" />
+                            </div>
+                        </div>
+						<div class="clearfix m-b-10">
+							<span id="login_tip" class="login-reg-tip">@message</span>
+                        </div>
+                        <div id="login_btn" class="btn btn-block btn-primary">登录</div>
+                    </form>
+                </div>
+            </div>
+			<!-- /login -->
+					
+        </div>
+    </div>
+</div>
+<!-- /login & reg -->
+		
+<!-- footer -->
+<div class="page_footer bg-black">
+    <div class="container bdb_gd p-t-20 p-b-20">
+        <div class="row">
+            <div class="col-xs-3">
+                <a href="/home/login"><img src="@Url.Content("~/static/images/index/foot-logo.png")" alt="" /></a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center fz-12 p-t-5 p-b-5">
+        <span class="c-g9">© 2015-2016&nbsp;森岚科技&nbsp;版权所有</span>
+    </div>
+</div>
+<!-- /footer -->
+
+<!-- Older IE warning message -->
+<!--[if lt IE 10]>
+<div class="ie-warning">
+    <h1 class="c-white">警告!!</h1>
+    <p>您正在使用低版本的浏览器来浏览本网站内容，点击以下图标可升级您的浏览器。不便之处还望理解!</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="@Url.Content("~/static/images/index/browsers/chrome.png")" alt="">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="@Url.Content("~/static/images/index/browsers/firefox.png")" alt="">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="@Url.Content("~/static/images/index/browsers/opera.png")" alt="">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="@Url.Content("~/static/images/index/browsers/safari.png")" alt="">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="@Url.Content("~/static/images/index/browsers/ie.png")" alt="">
+                    <div>IE (New)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p></p>
+</div>
+<![endif]-->
+    
+<script type="text/javascript" src="@Url.Content("~/static/js/jquery.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/static/js/bootstrap/js/bootstrap.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/static/js/jquery.placeholder.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/static/js/jquery.formatter.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/static/js/md5.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/static/js/util.js")"></script>
+<script type="text/javascript">
+
+var TOTAL_TIME = 120;
+
+// 注册Timer
+var hasRunTime = 0;
+var intervalID;
+
+// 找回密码Timer
+var hasRunTimePwd = 0;
+var intervalIDPwd;
+
+$(document).ready(function () {
+
+    // 初始化placeholder
+    $('input,textarea').placeholder();
+
+    // 注册事件
+    $('#login_btn').click(function () { login(); });
+    $('#login_pwd').keydown(function (e) { enterHandler(e); });
+})
+
+/* 登录 */
+function login() {
+	$('#login_tip').text('');
+
+	var userName = $.trim($('#login_user_name').val());
+	if (!userName) {
+		$('#login_tip').text('请输入用户名');
+		return;
+	}
+
+	var password = $.trim($('#login_pwd').val());
+	if (!password) {
+	    
+		$('#login_tip').text('请输入密码');
+		return;
+	}
+
+	$('#login_pwd_hidden').val($.md5(password));
+	$('#login_pwd').val('');
+
+	$('#login_btn').text('正在登录');  
+
+	$('#login_form').submit();
+}
+
+
+/* 登录密码框输入Enter事件 */
+function enterHandler(event) {
+	var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+	if (keyCode == 13) {
+		login();
+	}
+}
+
+</script>
+	
+</body>
+</html>
